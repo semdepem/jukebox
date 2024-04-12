@@ -44,8 +44,7 @@ if(mysqli_num_rows($result) === 1) {
     }
 }
 else {
-    header("Location: index.php");
-    echo "kaas";
+    header("Location: home.php");
     exit();
 }
 ?>
