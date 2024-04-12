@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="/css/index.css">
 </head>
 <body>
+    <h1>Welkom</h1>
     <nav>
         <form action="login.php" method="post">
             <h2>LOGIN</h2>
