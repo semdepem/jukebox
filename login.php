@@ -24,15 +24,15 @@ else if (empty($pass)){
     exit();
 }
 
-$sql = "SELECT * FROM muziek WHERE gebruiker='$uname' AND wachtwoord='$pass'";
+$sql = "SELECT * FROM login WHERE username='$uname' AND password='$pass'";
 
 $result = mysqli_query($conn, $sql);
 
 if(mysqli_num_rows($result) === 1) {
     $row = mysqli_fetch_assoc($result);
-    if($row['gebruiker'] ===  $uname && $row['wachtwoord'] === $pass) {
+    if($row['username'] ===  $uname && $row['password'] === $pass) {
         echo "Logged in!!";
-        $_SESSION['gebruiker'] = $row['gebruiker'];
+        $_SESSION['username'] = $row['username'];
         $_SESSION['name'] = $row['name'];
         $_SESSION['id'] = $row['id'];
         header("Location: home.php");
