@@ -1,2 +1,2 @@
 # de database connectie
-db_conn.php
+inc/db_conn.php
