@@ -1,7 +1,8 @@
 <?php
-include '../inc/config.php';
-
-
+$db = new mysqli('localhost', 'db088699', 'banaankaas', '088699_database');
+if ($db->connect_error) {
+    die("Connection failed: " . $db->connect_error);
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +17,7 @@ include '../inc/config.php';
 <body>
     <nav class="navbar">
         <button class="cool">Login</button>
+        <button class="upload"><a href="../php/uploader.php"></a></button>
     </nav>
     <div class="parent">
         <div class="div1"> RICK ROLL</div>

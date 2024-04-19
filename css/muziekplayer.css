@@ -16,6 +16,10 @@ body{
     width: 100px;
 }
 
+.upload{
+    width: 100px;
+}
+
 .parent {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
