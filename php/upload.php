@@ -7,14 +7,27 @@ if ($db->connect_error) {
 
 // Handle file upload
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = $_FILES['mp3_file']['name'];
-    $file = file_get_contents($_FILES['mp3_file']['tmp_name']);
+    // Check if file was uploaded without errors
+    if (isset($_FILES['mp3_file']) && $_FILES['mp3_file']['error'] === UPLOAD_ERR_OK) {
+        $title = $_FILES['mp3_file']['name'];
+        $file = $_FILES['mp3_file']['tmp_name'];
 
-    $stmt = $db->prepare("INSERT INTO songs (title, file) VALUES (?, ?)");
-    $stmt->bind_param("sb", $title, $file);
-    $stmt->execute();
-    $stmt->close();
+        // Move the uploaded file to the "Media" folder
+        $targetPath = "../Media/" . $title;
+        if (move_uploaded_file($file, $targetPath)) {
+            // Insert file details into the database
+            $stmt = $db->prepare("INSERT INTO songs (title, file) VALUES (?, ?)");
+            $stmt->bind_param("ss", $title, $targetPath);
+            $stmt->execute();
+            $stmt->close();
 
-    echo "File uploaded successfully.";
+            echo "File uploaded successfully.";
+        } else {
+            echo "Error moving uploaded file.";
+        }
+    } else {
+        // Check if file upload encountered any errors
+        echo "Error uploading file. Error code: " . $_FILES['mp3_file']['error'];
+    }
 }
 ?>
