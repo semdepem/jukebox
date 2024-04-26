@@ -1,0 +1,8 @@
+.navbar{
+    display: flex;
+    background: green;
+    height: 8vh;
+    max-width: auto;
+    margin-bottom: 25px;
+    
+}
