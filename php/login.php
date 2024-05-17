@@ -34,8 +34,6 @@ unset($_SESSION['login_error']); // Clear the error message
     </form>
 
     <hr class="col-3 col-md-2 mb-5">
-
-    <a href="register.php" class="btn btn-primary">Register</a>
     </center>
 </body>
 </html>
