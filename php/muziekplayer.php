@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // Database connection
 $db = new mysqli('localhost', 'db088699', 'banaankaas', '088699_database');
 if ($db->connect_error) {
@@ -54,50 +56,54 @@ if ($result->num_rows > 0) {
     <title>Jukebox</title>
 </head>
 <body>
-<header class="p-3 text-bg-danger">
-    <div class="container">
+<header class="p-3 text-bg-primary">
+<div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
           <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+          <li><a href="muziekplayer.php"><button type="button" class="btn btn-outline-light me-2">Home</button></a></li>
         
         <?php
             if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) {
-                echo '   <div class="text-end">';
-                echo '   <a href="uploader.php"><button type="button" class="btn btn-outline-light me-2" >Upload</button></a>';
-                echo '  </div>';
+                echo '<div class="text-end">';
+                echo '<a href="uploader.php"><button type="button" class="btn btn-outline-light me-2">Upload</button></a>';
+                echo '<a href="logout.php"><button type="button" class="btn btn-outline-light me-2">Logout</button></a>';
+                echo '</div>';
             } else {
                 // Show the "Login" link when not logged in
-                echo '   <div class="text-end">';
-                echo '   <a href="login.php"><button type="button" class="btn btn-outline-light me-2" >Login</button></a>';
-                echo '  </div>';
+                echo '<div class="text-end">';
+                echo '<a href="login.php"><button type="button" class="btn btn-outline-light me-2">Login</button></a>';
+                echo '</div>';
             }
-            ?>
+        ?>
         </ul>
-        </header>
-
-
-    <div class="parent">
-        <?php foreach ($songs as $song): ?>
-            <div class="song"><?php echo $song; ?></div>
-        <?php endforeach; ?>
-        
-    <div class="13" id="lijst">Lijst</div>
-
+      </div>
     </div>
+</header>
 
-    <script>
-        // JavaScript to handle clicking on a song
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('song')) {
-        var songName = e.target.textContent;
-        var lijstDiv = document.getElementById('lijst');
-        lijstDiv.innerHTML = "<audio controls><source src='../Media/" + songName + "' type='audio/mpeg'></audio>";
-    }
-});
+<div class="parent">
+    <?php foreach ($songs as $song): ?>
+        <button type="button" class="btn btn-primary song"><?php echo $song; ?></button>
+    <?php endforeach; ?>
+</div>
+
+    
+    <div class="13" id="lijst">Lijst</div>
+</div>
+
+<script>
+    // JavaScript to handle clicking on a song
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('song')) {
+            var songName = e.target.textContent;
+            var lijstDiv = document.getElementById('lijst');
+            lijstDiv.innerHTML = "<audio controls><source src='../Media/" + songName + "'type='audio/mpeg'></audio>";
+        }
+    });
+
     </script>
-</body>
-</html>
+    </body>
+    </html>

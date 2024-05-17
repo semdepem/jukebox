@@ -1,16 +1,15 @@
 <?php
+include('config.php');
 session_start();
-//var_dump($_SESSION); // Output session data for debugging
 
-
-// Check if there's a login error message
-$login_error = isset($_SESSION['login_error']) ? $_SESSION['login_error'] : '';
-unset($_SESSION['login_error']); // Clear the error message
-
+if (isset($_SESSION['id']) && isset($_SESSION['user'])) header('Location: ../admincomments.php');
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>User Login</title>
@@ -19,21 +18,30 @@ unset($_SESSION['login_error']); // Clear the error message
 </head>
 <body>
     <center>
-    <h2>User Login</h2>
-    <?php if (!empty($login_error)): ?>
-        <p style="color: red;"><?php echo $login_error; ?></p>
-    <?php endif; ?>
-    <form action="login_process.php" method="post">
-        <label class="form-label" for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br><br>
+    <h1>Login</h1>
+        <?php if (isset($_SESSION['error'])) {
+            echo "<p style=color:red>" . $_SESSION['error'] . "</p>";
+            unset($_SESSION['error']);
+        } ?>
+        <form name="f1" action="login_process.php" method="POST">
+            <p>
+                <label class="form-label" for="user"> Username: </label>
+                <input type="text" id="user" name="user" />
+            </p>
+            <p>
+                <label class="form-label" for="pass"> Password: </label>
+                <input type="password" id="pass" name="pass" />
+            </p>
+            <p>
+                <input type="submit" class="btn btn-primary" value="Login" />
+            </p>
+        </form>
+<!--    <a class="btn" href='register.php'>Register</a> -->
+    </div>
 
-        <label class="form-label" for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-
-        <input type="submit" class="btn btn-primary" value="Login">
-    </form>
 
     <hr class="col-3 col-md-2 mb-5">
+    <a href="muziekplayer.php"><button type="button" class="btn btn-outline-light me-2">Terug naar Jukebox</button></a>
     </center>
 </body>
 </html>
