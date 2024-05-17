@@ -63,8 +63,6 @@ if ($result->num_rows > 0) {
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-          <li><a href="info.php" class="nav-link px-2 text-white">Info</a></li>
-          <li><a href="Cards/collectie.php" class="nav-link px-2 text-white">Cards</a></li>
         
         <?php
             if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) {
