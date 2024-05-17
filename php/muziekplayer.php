@@ -42,19 +42,46 @@ if ($result->num_rows > 0) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/muziekplayer.css">
     <script src="../javascript/muziekload.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
     <title>Jukebox</title>
 </head>
 <body>
-    <nav class="navbar">
-        <button class="cool">Login</button>
-        <button class="upload"><a href="../php/uploader.php">upload</a></button>
-    </nav>
+<header class="p-3 text-bg-danger">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+          <li><a href="info.php" class="nav-link px-2 text-white">Info</a></li>
+          <li><a href="Cards/collectie.php" class="nav-link px-2 text-white">Cards</a></li>
+        
+        <?php
+            if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) {
+                echo '   <div class="text-end">';
+                echo '   <a href="uploader.php"><button type="button" class="btn btn-outline-light me-2" >Upload</button></a>';
+                echo '  </div>';
+            } else {
+                // Show the "Login" link when not logged in
+                echo '   <div class="text-end">';
+                echo '   <a href="login.php"><button type="button" class="btn btn-outline-light me-2" >Login</button></a>';
+                echo '  </div>';
+            }
+            ?>
+        </ul>
+        </header>
+
+
     <div class="parent">
         <?php foreach ($songs as $song): ?>
             <div class="song"><?php echo $song; ?></div>

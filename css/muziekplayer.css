@@ -4,15 +4,13 @@ body{
 
 .navbar{
     display: flex;
-    background: green;
     height: 8vh;
     max-width: auto;
     margin-bottom: 25px;
     
 }
 
-.cool{
-    background: red;
+.login {
     width: 100px;
 }
 
@@ -28,7 +26,6 @@ body{
     grid-row-gap: 20px;
     height: 86vh;
     width: auto;
-    background-color: gray;
     align-items: center;
     text-align: center;
     }

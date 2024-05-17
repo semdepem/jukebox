@@ -11,8 +11,6 @@ unset($_SESSION['login_error']); // Clear the error message
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>User Login</title>
