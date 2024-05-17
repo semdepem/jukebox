@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Error moving uploaded file.";
         }
     } else {
-        // Check if file upload encountered any errors
+        // Check if file upload encountered any errors .
         echo "Error uploading file. Error code: " . $_FILES['mp3_file']['error'];
     }
 }
